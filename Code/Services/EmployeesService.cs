@@ -1,6 +1,5 @@
 ﻿using Model;
 using Repository;
-using System;
 using System.Collections.Generic;
 
 
@@ -10,9 +9,10 @@ namespace Services
     public class EmployeesService : IEmployeeService
     {
         private IEmployeesRepository _repository;
-        public EmployeesService(IEmployeesRepository repository)
+        
+        public EmployeesService()
         {
-            _repository = repository;
+            _repository = new EmployeesRepository();
         }
         List<Employees> IEmployeeService.getEmployees(PageInfo page,Employees data)
         {

@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Repository
 {
-    class baseRepository : IDisposable
+    public class baseRepository : IDisposable
     {
         private SqlConnection _conn;
 

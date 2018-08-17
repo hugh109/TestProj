@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section myStyle{
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+}
+@section scripts{
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+@Scripts.Render("~/bundles/employee")
+    
+    <script>
+        var config = { url: { getEmployees: "@Url.Action("getEmployees")" } };
+        
+        $(function () {
+            formInit();
+        });
+
+        console.log(2);
+
+    </script>
+    }
+<div>
+    <input type="button" id="btnQuery" value="Query" class="btn-default" />
+</div>
+
+<div id="resultArea">
+
+</div>
+
+
+<div>
+    <table id="DataList" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>EmployeeID</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Title</th>
+                <th>BirthDate</th>                
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>EmployeeID</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Title</th>
+                <th>BirthDate</th>                
+            </tr>
+        </tfoot>
+    </table>
+
+</div>

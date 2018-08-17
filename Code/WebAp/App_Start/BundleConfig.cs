@@ -26,6 +26,14 @@ namespace WebAp
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+
+            #region funcitons
+            bundles.Add(new ScriptBundle("~/bundles/employee").Include(
+                        "~/Scripts/functions/employee.js"));
+            #endregion
+
+
         }
     }
 }
