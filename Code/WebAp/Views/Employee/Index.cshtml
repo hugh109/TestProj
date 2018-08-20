@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section myStyle{
+}
+@section scripts{
+    @Scripts.Render("~/bundles/employee")
+
+    <script>
+        var config = {
+            url: {
+                getEmployees: "@Url.Action("searchList")",
+                del: "@Url.Action("del")",
+                detail: "@Url.Action("detail")"
+            },
+            data: { selectID: 0 }
+        };
+
+        $(function () {
+            formInit();
+        });
+
+
+    </script>
+}
+
+<div style="margin:10px;" data-id="0">
+    <div>
+        <input type="button" value="新增" id="btnNew" class="btn btn-default" />
+    </div>
+</div>
+<div id="resultArea">
+
+</div>
+
+<div id="modalConfirm" style="display:none; cursor: default;margin:10px;">
+    <div id="modalConfirmLabel"></div>
+    <div>
+        <input type="button" id="btnModalYes" value="確定" />
+        <input type="button" id="btnModalNo" value="取消" />
+    </div>
+</div>
+
+

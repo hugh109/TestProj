@@ -1,0 +1,47 @@
+﻿@using Model
+@model Employees
+@{
+    ViewBag.Title = "資料維護";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var _id = (Model != null) ? Model.EmployeeID : 0;
+    string _status = _id > 0 ? "維護" : "新增";
+
+}
+@section myStyle{
+    @Styles.Render("~/Content/jquery-ui");
+}
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryui","~/bundles/employeeModify")
+
+    <script>
+        var config = {
+            id: "@_id",
+            url: {
+                index: "@Url.Action("index")",
+                update: "@Url.Action("update")"
+            }
+        };
+
+        $(function () {
+            formInit();
+        });
+
+
+    </script>
+}
+<div style="margin:10px;">
+    <input type="button" value="回列表" id="btnBackList" class="btn btn-default" />
+
+    <input type="button" value="儲存" id="btnSave" class="btn btn-primary" />
+</div>
+
+
+<form id="modifyArea">
+    @Html.HiddenFor(x => x.EmployeeID);
+    <ul>
+        <li>  @Html.LabelFor(x => x.LastName) @Html.TextBoxFor(x => x.LastName)</li>
+        <li>  @Html.LabelFor(x => x.FirstName) @Html.TextBoxFor(x => x.FirstName)</li>
+        <li>  @Html.LabelFor(x => x.Title) @Html.TextBoxFor(x => x.Title)</li>
+        <li>  @Html.LabelFor(x => x.BirthDate) @Html.EditorFor(x => x.BirthDate,new { @class="date"})</li>
+    </ul>
+</form>

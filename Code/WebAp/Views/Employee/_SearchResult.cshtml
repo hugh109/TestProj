@@ -1,0 +1,40 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<Model.Employees>
+
+@{
+    int _pageNumber = Model.PageNumber - 1;
+    int _pageSize = Model.PageSize;
+    int _seq = _pageNumber * _pageSize;
+
+}
+
+<div class="row">
+    <table class="table table-striped table-hover">
+        <tr>
+            <th>#</th>  
+            <th></th>          
+            <th>LastName</th>
+            <th>FirstName</th>
+            <th>Title</th>
+            <th>BirthDate</th>
+        </tr>
+       @{ foreach (var item in Model)
+           {
+               _seq++;
+            <tr data-id="@item.EmployeeID" data-label="@string.Format("{0}-{1}",item.LastName,item.FirstName)">
+                <td>@_seq</td>
+                <td><input type="button" class="btnEdit" value="edit" /><input type="button" class="btnDel" value="del" /></td>
+                <td>@item.LastName</td>
+                <td>@item.FirstName</td>
+                <td>@item.Title</td>
+                <td>@((item.BirthDate.HasValue==true)? @Html.Raw(item.BirthDate.Value.ToString("yyyy/MM/dd")):@Html.Raw(""))</td>
+            </tr>
+           }}
+
+    </table>
+
+</div>
+<div style="text-align:center;">
+    @Html.PagedListPager(Model, page => Url.Action("searchList", new { Index = page }), PagedListRenderOptions.Classic)
+</div>

@@ -4,7 +4,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
-namespace RCTA.Controllers
+namespace WebAp.Controllers
 {
     /// <summary>
     /// 使用 Json.NET 序列化資料(使用後需注意原本日期屬性的操作是否正常)
@@ -37,7 +37,7 @@ namespace RCTA.Controllers
             }
         }
     }
-    public class JsonNetController : Controller
+    public class JsonNetController : BaseController
     {
         protected override JsonResult Json(object data, string contentType,
                   Encoding contentEncoding, JsonRequestBehavior behavior)

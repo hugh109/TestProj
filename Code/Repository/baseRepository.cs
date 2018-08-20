@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -7,7 +8,7 @@ using System.Linq;
 
 namespace Repository
 {
-    class baseRepository : IDisposable
+    public class baseRepository : IDisposable
     {
         private SqlConnection _conn;
 
@@ -59,7 +60,7 @@ namespace Repository
             return _result;
         }
         #endregion
-        
+
         //-------------------------------------
         /// <summary>
         /// 回傳指定類別 -- 需傳入SQL參數
@@ -83,7 +84,7 @@ namespace Repository
 
         }
 
-        public IList<T> ToClassByObj<T>(string sql, object Params) where T : new()
+        public IList<T> ToClass<T>(string sql, object Params) where T : new()
         {
             if (string.IsNullOrEmpty(sql) == true)
             {
@@ -136,25 +137,63 @@ namespace Repository
             return _flag;
         }
 
-        public bool ToExecute(string sql, object Params)
+        public ReturnResult ToExecute(string sql, object Params)
         {
-            bool _flag = false;
-            int _result = 0;
-            if (string.IsNullOrEmpty(sql) == true)
+            var _result = new ReturnResult();
+            int _flag = 0;
+
+            try
             {
+                if (Params != null)
+                {
+                    _flag = _conn.Execute(sql, Params);
+                }
+                else
+                {
+                    _flag = _conn.Execute(sql);
+                }
+
+                _result.Success = true;
+                _result.Code = "1";
+                _result.Msg = string.Empty;
 
             }
-            if (Params != null)
+            catch (Exception ex)
             {
-                _result = this._conn.Execute(sql, Params);
+                _result.Code = "0";
+                _result.Msg = ex.Message;
             }
-            else
-            {
-                _result = this._conn.Execute(sql, Params);
-            }
-            _flag = (_result == 0) ? false : true;
-            return _flag;
+            _result.Success = (_flag == 0) ? false : true;
+
+            return _result;
         }
 
+        public string appendInsertStr(string sql, string[] columns)
+        {
+            var _result = string.Empty;
+            if (columns.Count() > 0)
+            {
+                _result = string.Format("{0} ({1}) values(@{2})", sql, string.Join(",", columns), string.Join(",@", columns));
+
+            }
+            return _result;
+        }
+
+
+        public string appendUpdateStr(string sql, string[] columns)
+        {
+            var _result = string.Empty;
+            var _pars = new List<string>();
+            for (int i = 0; i < columns.Length; i++)
+            {
+                _pars.Add(string.Format("{0}=@{0}", columns[i]));
+            }
+            if (_pars.Count > 0)
+            {
+                _result = string.Format("{0} set {1}", sql, string.Join(",", _pars));
+
+            }
+            return _result;
+        }
     }
 }

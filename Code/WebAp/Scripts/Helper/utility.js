@@ -30,6 +30,18 @@ function ShowBlock(/*ex: "#showArea"*/_div, _msg, _isShow, _width) {
     }
 }
 
+function showConfirmMessageBox(msg, YesfunctionName, NofunctionName) {
+    $("#modalConfirmLabel").html(msg)
+    ShowBlock(null, $('#modalConfirm'), true);
+    $("#btnModalYes,#btnModalNo").off("click");
+    if (jQuery.type(YesfunctionName) === "function") {
+        $("#btnModalYes").on("click", YesfunctionName);
+    }
+    if (jQuery.type(NofunctionName) === "function") {
+        $("#btnModalNo").on("click", NofunctionName);
+    }
+}
+
 $.fn.center = function () {
     this.css("position", "absolute");
     this.css("top", ($(window).height() - this.height()) / 2 + $(window).scrollTop() + "px");
@@ -152,21 +164,4 @@ function sleep(seconds) {
 function showTimeLog(_msg) {
     var _now = new Date();
     console.log(String.format("{0}:{1}", _now, (_msg || "")));
-}
-
-function downloadFileByForm(_url,_param) {
-    var form = $('<form method="POST" style="display:none;" action="' + _url + '">');
-
-    $.each(_param, function (k, v) {
-        if (k == "weekDayFilt" || k == "timeFilt") {
-            for (i = 0; i < v.length ; i++) {
-                form.append($('<input type="hidden" name="' + k + '[' + i + ']' +'" value="' + v[i] + '">'));
-            }
-        } else {
-            form.append($('<input type="hidden" name="' + k + '" value="' + v + '">'));
-        }
-    });
-
-    $('body').append(form);
-    form.submit().remove();
 }

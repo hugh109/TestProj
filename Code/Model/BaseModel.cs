@@ -22,21 +22,21 @@
 
     public class PageInfo
     {
-        public int _pageIndex { get; set; }
-        public int _pageSize { get; set; }
-        public int _pageCount { get; set; }
-        public int _totalCount { get; set; }
-        public string _ID { get; set; }
-        public string _onPageIndexChangeClientFunction { get; set; }
+        public int pageIndex { get; set; }
+        public int pageSize { get; set; }
+        public int pageCount { get; set; }
+        public int totalCount { get; set; }
+        public string ID { get; set; }
+        public string onPageIndexChangeClientFunction { get; set; }
 
         public PageInfo()
         {
-            _pageIndex = 0;
-            _pageSize = 0;
-            _pageCount = 0;
-            _totalCount = 0;
-            _ID = string.Empty;
-            _onPageIndexChangeClientFunction = string.Empty;
+            pageIndex = 0;
+            pageSize = 0;
+            pageCount = 0;
+            totalCount = 0;
+            ID = string.Empty;
+            onPageIndexChangeClientFunction = string.Empty;
         }
 
     }

@@ -1,11 +1,14 @@
 ﻿using Model;
 using System.Collections.Generic;
 
-namespace Services
+namespace Services.Interface
 {
     public interface IEmployeeService
     {
-        List<Employees> getEmployees(PageInfo page, Employees data);
+        List<Employees> getList(Employees data);      
+        Employees getInfo(int id);
 
+        ReturnResult update(Employees data);
+        ReturnResult del(int id);
     }
 }

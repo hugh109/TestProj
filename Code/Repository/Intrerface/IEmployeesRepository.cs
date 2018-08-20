@@ -5,6 +5,12 @@ namespace Repository
 {
     public interface IEmployeesRepository
     {
-        List<Employees> getEmployees(Employees data);
+        List<Employees> getList(Employees data);
+        Employees getInfo(int id);
+
+        ReturnResult create(Employees data);
+        ReturnResult update(Employees data);
+        ReturnResult del(int id);
+
     }
 }

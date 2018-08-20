@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="baseRepository.cs" />
+    <Compile Include="EmployeesRepository.cs" />
+    <Compile Include="Intrerface\IEmployeesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
