@@ -1,6 +1,6 @@
 ﻿using Model;
 using PagedList;
-using Services;
+//using Services;
 using Services.Interface;
 using System.Web.Mvc;
 
@@ -10,9 +10,9 @@ namespace WebAp.Controllers
     {
         private IEmployeeService _employeeService;
 
-        public EmployeeController()
+        public EmployeeController(IEmployeeService s)
         {
-            _employeeService = new EmployeesService();
+            _employeeService = s;// new EmployeesService();
         }
 
         public ActionResult Index()

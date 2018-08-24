@@ -2,7 +2,6 @@
 using Repository;
 using Services.Interface;
 using System.Collections.Generic;
-using System;
 
 namespace Services
 {
@@ -10,9 +9,10 @@ namespace Services
     {
         private IEmployeesRepository _repository;
 
-        public EmployeesService()
+        public EmployeesService(IEmployeesRepository r)
         {
-            _repository = new EmployeesRepository();
+            //_repository = new EmployeesRepository();
+            _repository = r;
         }
         
 

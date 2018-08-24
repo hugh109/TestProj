@@ -214,6 +214,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -339,6 +340,10 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{05dac654-0e2d-4226-bfcb-d3d6679b4c5e}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{d7af6358-78a7-487e-b86b-b41d00f59fc2}</Project>
+      <Name>Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{debed9eb-8a84-49ee-96f7-0b752622d27e}</Project>
