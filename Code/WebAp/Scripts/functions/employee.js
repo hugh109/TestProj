@@ -21,9 +21,12 @@ function refreshPage() {
 function fetchPage(page) {
     var _url = config.url.getEmployees;
     var _data = { page: page };
+
+    ShowBlock("", "查詢中...", true);
     $.post(_url, _data, function (result) {
         window.location.hash = page;
         $("#resultArea").html(result);
+        ShowBlock();
     });
 }
 
@@ -36,10 +39,10 @@ function fetchPageInit() {
         var _hyperLinkUrl = _this.attr("href");
         if (typeof _hyperLinkUrl !== "undefined" && _hyperLinkUrl !== false) {
             var _pageNumber = _this.attr("href").replace(_replaceStr, "");
-            //event.preventDefault();
+            event.preventDefault();
             fetchPage(_pageNumber);
             //console.log(_pageNumber);
-            return false;
+            //return false;
         }
     })
 }
